@@ -111,6 +111,7 @@ export PATH=/Users/advena/Library/Python/3.8/bin:$PATH
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR='vim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -122,7 +123,7 @@ export PATH=/Users/advena/Library/Python/3.8/bin:$PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ll='ls -la'
+alias ll='ls -lah'
 alias lt='ls --tree'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
