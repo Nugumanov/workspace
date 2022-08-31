@@ -12,3 +12,5 @@ syntax on
 "autocmd InsertLeave * set nocul
 "
 autocmd InsertEnter,InsertLeave * set cul!
+
+:set number
