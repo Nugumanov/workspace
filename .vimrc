@@ -1,4 +1,4 @@
-set nonumber
+"set nonumber
 set noruler
 syntax on
 
@@ -14,3 +14,7 @@ syntax on
 autocmd InsertEnter,InsertLeave * set cul!
 
 :set number
+
+call plug#begin()
+Plug 'preservim/NERDTree'
+call plug#end()
