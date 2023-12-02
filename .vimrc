@@ -15,6 +15,8 @@ autocmd InsertEnter,InsertLeave * set cul!
 
 :set number
 
+"Pugins with vim-plug
+set nocompatible
 call plug#begin()
-Plug 'preservim/NERDTree'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
