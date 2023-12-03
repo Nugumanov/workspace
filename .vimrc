@@ -2,15 +2,6 @@
 set noruler
 syntax on
 
-"colorscheme tim
-"set background=dark
-"autocmd ColorScheme tim highlight normal ctermbg=235
-"highligh Normal
-"autocmd InsertEnter * highlight Normal ctermbg=17
-"autocmd InsertLeave * highlight Normal ctermbg=16
-"autocmd InsertEnter * set cul
-"autocmd InsertLeave * set nocul
-"
 autocmd InsertEnter,InsertLeave * set cul!
 
 :set number
@@ -19,6 +10,15 @@ autocmd InsertEnter,InsertLeave * set cul!
 set nocompatible
 call plug#begin()
 Plug 'sheerun/vim-polyglot'
+Plug 'ayu-theme/ayu-vim' "
+Plug 'lambdalisue/fern.vim'
 call plug#end()
 
 :colorscheme morning
+
+"...
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
