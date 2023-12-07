@@ -20,6 +20,7 @@ call plug#begin()
 Plug 'sheerun/vim-polyglot'
 Plug 'ayu-theme/ayu-vim'
 Plug 'lambdalisue/fern.vim'
+Plug 'yuki-yano/fern-preview.vim'
 call plug#end()
 
 " Setup colors
@@ -27,7 +28,7 @@ set termguicolors     " enable true colors support
 "let ayucolor="dark"
 "let ayucolor="mirage"
 let ayucolor="light"
-colorscheme ayu
+colorscheme retrobox
 
 " Fern
 let g:fern#disable_default_mapping = 1
@@ -46,9 +47,23 @@ function! FernInit() abort
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
 endfunction
 
+" Fern preview
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
+
+
 augroup my-fern-startup
   autocmd! *
-  autocmd VimEnter * ++nested Fern . -drawer -toggle -width=35 -reveal=%
+  autocmd VimEnter * ++nested Fern . -drawer -toggle -reveal=% -width=35
 augroup END
 
 " Cycle through colors
@@ -63,4 +78,5 @@ func! PrevColors()
 endfunc
 nnoremap <F1> :exe "colo " . PrevColors()<CR>
 nnoremap <F2> :exe "colo " . NextColors()<CR>
+
 
