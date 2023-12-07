@@ -42,7 +42,7 @@ function! FernInit() abort
   nmap <buffer> K <Plug>(fern-action-mark-toggle)
   nmap <buffer> H <Plug>(fern-action-open:split)
   nmap <buffer> V <Plug>(fern-action-aopen:vsplit)
-  nmap <buffer><nowait> <  <Plug>(fern-action-leave)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
 endfunction
 
@@ -61,6 +61,6 @@ func! PrevColors()
     let idx = index(g:colors, g:colors_name)
     return (idx - 1 < 0 ? g:colors[-1] : g:colors[idx - 1])
 endfunc
-nnoremap <C-n> :exe "colo " .. NextColors()<CR>
-nnoremap <C-p> :exe "colo " .. PrevColors()<CR>
+nnoremap <F1> :exe "colo " . PrevColors()<CR>
+nnoremap <F2> :exe "colo " . NextColors()<CR>
 
