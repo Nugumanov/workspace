@@ -6,3 +6,5 @@
 !.tmux.reset.conf
 !.bashrc
 !.vim/colors
+!scripts
+!scripts/*
