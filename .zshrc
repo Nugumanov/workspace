@@ -124,11 +124,11 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ll='ls -la'
+alias ll='ls -lah'
 alias lt='ls --tree'
 alias dpa='docker ps -a'
 alias ga='git add'
-alias gc='git commit -m \"$1\"'
+alias gc='git commit'
 alias k='kubectl'
 alias kcp='kubectl --context=kubernetes-admin@prodmho.local'
 alias kcq='kubectl --context=kubernetes-admin@qamho.local'
