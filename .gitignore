@@ -1,10 +1,2 @@
-*
-!.vimrc
-!.gitignore
-!.zshrc
-!.tmux.conf
-!.tmux.reset.conf
-!.bashrc
-!.vim/colors
-!scripts
-!scripts/*
+*.log
+*.bak
