@@ -1,9 +1,17 @@
 syntax on
 set encoding=UTF-8
 vmap <C-c> :w !pbcopy<CR><CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 autocmd InsertEnter,InsertLeave * set cul!
 set ruler
-set showtabline=0
+set showtabline=1
+set termwinsize=10x0
+
+" open terminal below all splits
+cabbrev bterm bo term
 
 
 
@@ -25,7 +33,6 @@ Plug 'lambdalisue/fern.vim'
 Plug 'yuki-yano/fern-preview.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
 "-----------------------------------------------"
@@ -34,15 +41,15 @@ call plug#end()
 
 " COLORS
 "-----------------------------------------------"
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set termguicolors     " enable true colors support
 set background=dark
 
 let g:gruvbox_italic=0
 colorscheme gruvbox
-autocmd ColorScheme * :TmuxlineSnapshot! ~/.tmux/configs/tmuxline.conf
+"autocmd ColorScheme * :TmuxlineSnapshot! ~/.tmux/configs/tmuxline.conf
 
 set showtabline=2
 let g:airline_theme='gruvbox'
@@ -72,20 +79,20 @@ let g:airline_section_y = 'eol'
 
 
 
-" TMUXLINE
-"-----------------------------------------------"
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-	\ 'a': '#S',
-        \ 'win': '#I: #W',
-        \ 'cwin': '#I: #W',
-	\ 'y': '#(spotify status artist) - #(spotify status track)',
-        \ 'z': '%d %b %H:%M',
-        \ 'options': {
-        \'status-justify': 'left'}
-	\}
-"-----------------------------------------------"
-
+ "" TMUXLINE
+ ""-----------------------------------------------"
+ "let g:tmuxline_powerline_separators = 0
+ "let g:tmuxline_preset = {
+ "	\ 'a': '#S',
+ "        \ 'win': '#I: #W',
+ "        \ 'cwin': '#I: #W',
+ "	\ 'y': '#(spotify status artist) - #(spotify status track)',
+ "        \ 'z': '%d %b %H:%M',
+ "        \ 'options': {
+ "        \'status-justify': 'left'}
+ "	\}
+ ""-----------------------------------------------"
+ "
 
 
 " FERN
@@ -112,8 +119,8 @@ augroup fern-settings
 augroup END
 
 augroup my-fern-startup
-  autocmd! *
-  autocmd VimEnter * ++nested Fern . -drawer -toggle -reveal=% -width=35
+  autocmd!
+  autocmd VimEnter * ++nested if argc() == 0 | exec "Fern . -drawer -toggle -reveal=% -width=35" | else | exec "Fern . -drawer -toggle -width=35" | wincmd p | endif
 augroup END
 
 " fern preview
