@@ -65,10 +65,10 @@ fi
 output=$(echo "$output" | tr -d '\n')
 
 # max length of the output
-max_length=35
+max_length=50
 
 # the speed at which the text should scroll (characters per second)
-scroll_speed=10
+scroll_speed=1
 
 if [ "$output" = "null" ]; then
     # if the output is null, print an error message and exit
