@@ -1,0 +1,3 @@
+[submodule "vim-kitty-navigator"]
+	path = vim-kitty-navigator
+	url = https://github.com/knubie/vim-kitty-navigator.git
