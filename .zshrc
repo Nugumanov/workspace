@@ -102,6 +102,7 @@ export PATH=/Users/advena/Library/Python/3.8/bin:$PATH
 #export PATH=/Library/Frameworks/Python.framework/Versions/3.10/bin:$PATH
 export KUBECONFIG=~/.kube/config_qa:~/.kube/config_prod
 export EDITOR='vim'
+export GIT_EDITOR='vim +startinsert'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
