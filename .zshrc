@@ -15,7 +15,7 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 
 # User with skull
 user_with_skull() {
-    echo -n " Advena"
+    echo -n ""
 }
 
 POWERLEVEL9K_CUSTOM_USER="user_with_skull"
