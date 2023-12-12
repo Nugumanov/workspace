@@ -27,7 +27,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'roman/golden-ratio'
+Plug 'rust-lang/rust.vim'
+Plug 'knubie/vim-kitty-navigator'
 call plug#end()
+
+" Rust recommendations
+syntax enable
+filetype plugin indent on
 "-----------------------------------------------"
 
 
@@ -124,6 +130,7 @@ function! s:fern_settings() abort
   nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
   nmap <buffer> V <Plug>(fern-action-open:vsplit)
   nmap <buffer> H <Plug>(fern-action-open:split)
+  nmap <buffer> S <Plug>(fern-action-open:select)
   nmap <buffer> M <Plug>(fern-action-move)
   nmap <buffer> <Space> <Plug>(fern-action-mark:toggle)
   nmap <buffer> dd <Plug>(fern-action-trash)
