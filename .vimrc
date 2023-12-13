@@ -119,7 +119,7 @@ function! SetupVimLayout()
   wincmd l
   vsplit
   wincmd l
-  execute argc() == 0 ? 'enew | startinsert': (argc() == 1 ? 'enew' : 'e ' . argv(1))
+  execute argc() == 0 ? 'enew': (argc() == 1 ? 'enew' : 'e ' . argv(1))
   wincmd h
 endfunction
 
