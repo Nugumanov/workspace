@@ -29,6 +29,7 @@ Plug 'morhetz/gruvbox'
 Plug 'roman/golden-ratio'
 Plug 'rust-lang/rust.vim'
 Plug 'knubie/vim-kitty-navigator'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Rust recommendations
