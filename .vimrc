@@ -153,6 +153,12 @@ augroup fern-settings
   autocmd!
   autocmd FileType fern call s:fern_settings()
 augroup END
+
+function! FernChangeDir(path)
+  execute 'cd' fnameescape(a:path)
+endfunction
+
+let g:fern#hook#leaf#open = function('FernChangeDir')
 "-----------------------------------------------"
 
 
