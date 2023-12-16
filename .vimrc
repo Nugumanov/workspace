@@ -118,10 +118,10 @@ let g:fern#default_hidden = 1
 function! SetupVimLayout()
   Fern . -drawer -toggle -width=35 -reveal=%
   wincmd l
-  vsplit
-  wincmd l
-  execute argc() == 0 ? 'enew': (argc() == 1 ? 'enew' : 'e ' . argv(1))
-  wincmd h
+"  vsplit
+"  wincmd l
+"  execute argc() == 0 ? 'enew': (argc() == 1 ? 'enew' : 'e ' . argv(1))
+"  wincmd h
 endfunction
 
 function! s:fern_settings() abort
