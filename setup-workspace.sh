@@ -91,7 +91,7 @@ clone_configs() {
         cd $CONFIG_DIR && git pull
     else
         echo "Cloning configuration repository..."
-        git clone $REPO_URL $CONFIG_DIR
+        git clone --recurse-submodules $REPO_URL $CONFIG_DIR
     fi
 }
 
@@ -109,6 +109,10 @@ apply_configs() {
     ln -sf $CONFIG_DIR/kitty-keys.conf $HOME/.config/kitty/kitty-keys.conf
     ln -sf $CONFIG_DIR/kitty-session.conf $HOME/.config/kitty/kitty-session.conf
     ln -sf $CONFIG_DIR/kitty-tabs.conf $HOME/.config/kitty/kitty-tabs.conf
+
+    # Ensure submodules are updated
+    cd $CONFIG_DIR
+    git submodule update --init --recursive
 
     # Link scripts
     mkdir -p $HOME/scripts
