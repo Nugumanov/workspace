@@ -5,6 +5,7 @@ REPO_URL="https://github.com/Nugumanov/workspace.git"
 CONFIG_DIR="$HOME/workspace"
 LOGFILE="$HOME/setup-log.txt"
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+DOTFILES_DIR="$HOME/dotfiles"
 
 # Log setup
 exec > >(tee -a $LOGFILE) 2>&1
@@ -104,11 +105,17 @@ apply_configs() {
     ln -sf $CONFIG_DIR/.tmux.conf $HOME/.tmux.conf
     ln -sf $CONFIG_DIR/.tmux.reset.conf $HOME/.tmux.reset.conf
     ln -sf $CONFIG_DIR/.vimrc $HOME/.vimrc
+
+    # Ensure Kitty configuration directory exists
     mkdir -p $HOME/.config/kitty
+
+    # Link Kitty configuration files
     ln -sf $CONFIG_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
     ln -sf $CONFIG_DIR/kitty-keys.conf $HOME/.config/kitty/kitty-keys.conf
     ln -sf $CONFIG_DIR/kitty-session.conf $HOME/.config/kitty/kitty-session.conf
     ln -sf $CONFIG_DIR/kitty-tabs.conf $HOME/.config/kitty/kitty-tabs.conf
+    ln -sf $CONFIG_DIR/kitty-layout.conf $HOME/.config/kitty/kitty-layout.conf
+    ln -sf $CONFIG_DIR/theme.conf $HOME/.config/kitty/theme.conf
 
     # Ensure submodules are updated
     cd $CONFIG_DIR
@@ -121,8 +128,8 @@ apply_configs() {
     ln -sf $CONFIG_DIR/scripts/pass_keys.py $HOME/scripts/pass_keys.py
 
     # Ensure scripts are in the correct place for Kitty
-    ln -sf $CONFIG_DIR/scripts/pass_keys.py $HOME/.config/kitty/pass_keys.py
-    ln -sf $CONFIG_DIR/scripts/neighboring_window.py $HOME/.config/kitty/neighboring_window.py
+    ln -sf $HOME/scripts/pass_keys.py $HOME/.config/kitty/pass_keys.py
+    ln -sf $HOME/scripts/neighboring_window.py $HOME/.config/kitty/neighboring_window.py
 }
 
 set_default_shell() {
