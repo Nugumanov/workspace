@@ -18,4 +18,3 @@ vim.cmd [[
     autocmd User PackerComplete ++once lua vim.cmd("colorscheme gruvbox")
   augroup end
 ]]
---TEST
