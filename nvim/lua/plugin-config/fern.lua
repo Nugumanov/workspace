@@ -1,4 +1,6 @@
 -- lua/plugin-config/fern.lua
+vim.g['fern#scheme#file#mapping#mappings'] = {}
+
 vim.g.fern_disable_default_mappings = 1
 vim.g.fern_default_hidden = 1
 
