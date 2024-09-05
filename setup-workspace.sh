@@ -11,6 +11,16 @@ DOTFILES_DIR="$HOME/dotfiles"
 exec > >(tee -a $LOGFILE) 2>&1
 
 # Functions
+
+install_neovim() {
+    if ! command -v nvim &> /dev/null; then
+        echo "Installing Neovim..."
+        brew install neovim
+    else
+        echo "Neovim is already installed."
+    fi
+}
+
 install_homebrew() {
     if ! command -v brew &> /dev/null; then
         echo "Installing Homebrew..."
@@ -77,15 +87,6 @@ install_tmux() {
     fi
 }
 
-install_vim() {
-    if ! command -v vim &> /dev/null; then
-        echo "Installing vim..."
-        brew install vim
-    else
-        echo "vim is already installed."
-    fi
-}
-
 clone_configs() {
     if [ -d "$CONFIG_DIR" ]; then
         echo "Configuration directory already exists. Pulling the latest changes..."
@@ -117,6 +118,28 @@ apply_configs() {
     ln -sf $CONFIG_DIR/kitty-layout.conf $HOME/.config/kitty/kitty-layout.conf
     ln -sf $CONFIG_DIR/theme.conf $HOME/.config/kitty/theme.conf
 
+    # Ensure Neovim configuration directory exists
+    mkdir -p $HOME/.config/nvim/lua
+    mkdir -p $HOME/.config/nvim/lua/plugin-config
+
+    # Link Neovim Lua configuration files individually
+    ln -sf $CONFIG_DIR/nvim/init.lua $HOME/.config/nvim/init.lua
+    ln -sf $CONFIG_DIR/nvim/lua/plugins.lua $HOME/.config/nvim/lua/plugins.lua
+    ln -sf $CONFIG_DIR/nvim/lua/settings.lua $HOME/.config/nvim/lua/settings.lua
+    ln -sf $CONFIG_DIR/nvim/lua/mappings.lua $HOME/.config/nvim/lua/mappings.lua
+    ln -sf $CONFIG_DIR/nvim/lua/autocmds.lua $HOME/.config/nvim/lua/autocmds.lua
+    ln -sf $CONFIG_DIR/nvim/lua/colors.lua $HOME/.config/nvim/lua/colors.lua
+
+    # Link plugin-specific configurations for Neovim
+    ln -sf $CONFIG_DIR/nvim/lua/plugin-config/fern.lua $HOME/.config/nvim/lua/plugin-config/fern.lua
+    ln -sf $CONFIG_DIR/nvim/lua/plugin-config/airline.lua $HOME/.config/nvim/lua/plugin-config/airline.lua
+
+    # Optionally sync Neovim plugins after applying config
+    if command -v nvim &> /dev/null; then
+        echo "Syncing Neovim plugins..."
+        nvim --headless +PackerSync +qa
+    fi
+
     # Ensure submodules are updated
     cd $CONFIG_DIR
     git submodule update --init --recursive
@@ -143,10 +166,15 @@ set_default_shell() {
 
 # Main script execution
 install_homebrew
-install_zsh
 install_kitty
+install_zsh
 install_tmux
-install_vim
+
+install_neovim
+apply_neovim_config
+
+#install_vim
+
 clone_configs
 apply_configs
 set_default_shell
