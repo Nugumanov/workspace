@@ -6,11 +6,23 @@ CONFIG_DIR="$HOME/workspace"
 LOGFILE="$HOME/setup-log.txt"
 ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 DOTFILES_DIR="$HOME/dotfiles"
+PACKER_PATH="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 # Log setup
 exec > >(tee -a $LOGFILE) 2>&1
 
 # Functions
+
+install_packer() {
+    # Check if Packer is installed
+    if [ ! -d "$PACKER_PATH" ]; then
+        echo "Installing Packer..."
+        git clone --depth 1 https://github.com/wbthomason/packer.nvim "$PACKER_PATH"
+        echo "Packer installed."
+    else
+        echo "Packer is already installed."
+    fi
+}
 
 install_neovim() {
     if ! command -v nvim &> /dev/null; then
@@ -134,12 +146,6 @@ apply_configs() {
     ln -sf $CONFIG_DIR/nvim/lua/plugin-config/fern.lua $HOME/.config/nvim/lua/plugin-config/fern.lua
     ln -sf $CONFIG_DIR/nvim/lua/plugin-config/airline.lua $HOME/.config/nvim/lua/plugin-config/airline.lua
 
-    # Optionally sync Neovim plugins after applying config
-    if command -v nvim &> /dev/null; then
-        echo "Syncing Neovim plugins..."
-        nvim --headless +PackerSync +qa
-    fi
-
     # Ensure submodules are updated
     cd $CONFIG_DIR
     git submodule update --init --recursive
@@ -153,6 +159,14 @@ apply_configs() {
     # Ensure scripts are in the correct place for Kitty
     ln -sf $HOME/scripts/pass_keys.py $HOME/.config/kitty/pass_keys.py
     ln -sf $HOME/scripts/neighboring_window.py $HOME/.config/kitty/neighboring_window.py
+}
+
+sync_neovim_plugins() {
+    # Run this after Packer is installed
+    if command -v nvim &> /dev/null; then
+        echo "Syncing Neovim plugins..."
+        nvim --headless -c 'PackerSync' -c 'qa'
+    fi
 }
 
 set_default_shell() {
@@ -171,12 +185,13 @@ install_zsh
 install_tmux
 
 install_neovim
-apply_neovim_config
-
-#install_vim
+install_packer
 
 clone_configs
 apply_configs
+
+sync_neovim_plugins
+
 set_default_shell
 
 echo "Setup complete! Please restart your terminal."
