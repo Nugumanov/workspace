@@ -99,6 +99,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export MANPATH=/opt/local/share/man:$MANPATH
 export PATH=/Users/advena/Library/Python/3.8/bin:$PATH
+export PATH=$HOME/.docker/bin:$PATH
 #export PATH=/Library/Frameworks/Python.framework/Versions/3.10/bin:$PATH
 export KUBECONFIG=~/.kube/config_qa:~/.kube/config_prod
 export EDITOR='vim'

@@ -24,7 +24,28 @@ packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Coding
+  -- Completion framework:
+  use 'rust-lang/rust.vim'
+  use 'neovim/nvim-lspconfig'
+  use 'simrat39/rust-tools.nvim'
+  --use 'hrsh7th/nvim-cmp'
+  -- LSP completion source:
+  --use 'hrsh7th/cmp-nvim-lsp'
+  -- Useful completion sources:
+  --use 'hrsh7th/cmp-nvim-lua'
+  --use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  --use 'hrsh7th/cmp-vsnip'
+  --use 'hrsh7th/cmp-path'
+  --use 'hrsh7th/cmp-buffer'
+  --use 'hrsh7th/vim-vsnip'
+
+  --use 'nvim-treesitter/nvim-treesitter'
+
   -- Add your plugins here
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  
   use 'sheerun/vim-polyglot'
   use 'lambdalisue/fern.vim'
   use 'yuki-yano/fern-preview.vim'
@@ -32,7 +53,6 @@ packer.startup(function(use)
   use 'vim-airline/vim-airline-themes'
   use 'morhetz/gruvbox'
   use 'roman/golden-ratio'
-  use 'rust-lang/rust.vim'
   use 'knubie/vim-kitty-navigator'
   use 'tpope/vim-fugitive'  -- Ensure vim-fugitive is here
 
