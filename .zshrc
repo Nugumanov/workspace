@@ -102,38 +102,27 @@ export PATH=/Users/advena/Library/Python/3.8/bin:$PATH
 export PATH=$HOME/.docker/bin:$PATH
 #export PATH=/Library/Frameworks/Python.framework/Versions/3.10/bin:$PATH
 export KUBECONFIG=~/.kube/config_qa:~/.kube/config_prod
-export EDITOR='vim'
-export GIT_EDITOR='vim +startinsert'
+export GIT_EDITOR='nvim +startinsert'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='nvim'
+ else
+   export EDITOR='vim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -lah'
 alias lt='ls --tree'
 alias dpa='docker ps -a'
 alias ga='git add'
 alias gc='git commit'
 alias k='kubectl'
-alias kcp='kubectl --context=kubernetes-admin@prodmho.local'
-alias kcq='kubectl --context=kubernetes-admin@qamho.local'
 alias q=exit
 alias ktx=kubectx
 alias kns=kubens
@@ -143,6 +132,5 @@ alias exthaste='HASTE_SERVER=https://hastebin.com haste | pbcopy && echo "Comple
 cd ~
 
 compdef __start_kubectl k
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
