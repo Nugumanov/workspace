@@ -117,6 +117,7 @@ export GIT_EDITOR='nvim +startinsert'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+alias v='nvim'
 alias ll='ls -lah'
 alias lt='ls --tree'
 alias dpa='docker ps -a'
