@@ -101,6 +101,11 @@ export MANPATH=/opt/local/share/man:$MANPATH
 export PATH=/Users/advena/Library/Python/3.8/bin:$PATH
 export PATH=$HOME/.docker/bin:$PATH
 #export PATH=/Library/Frameworks/Python.framework/Versions/3.10/bin:$PATH
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=$ANDROID_HOME/emulator:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+
 export KUBECONFIG=~/.kube/config_qa:~/.kube/config_prod
 export GIT_EDITOR='nvim +startinsert'
 
@@ -118,6 +123,7 @@ export GIT_EDITOR='nvim +startinsert'
 # export ARCHFLAGS="-arch x86_64"
 
 alias v='nvim'
+alias icat='kitty icat'
 alias ll='ls -lah'
 alias lt='ls --tree'
 alias dpa='docker ps -a'
@@ -130,8 +136,19 @@ alias kns=kubens
 alias cl="clear"
 alias grer="grep -R -n"
 alias exthaste='HASTE_SERVER=https://hastebin.com haste | pbcopy && echo "Complete and copy external($(pbpaste))!"'
+kitty-reload() {
+    pkill -USR1 -f /usr/bin/kitty
+}
 cd ~
 
 compdef __start_kubectl k
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -f ~/.env ]; then
+    source ~/.env
+fi
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
